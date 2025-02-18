@@ -37,13 +37,13 @@ namespace Domain.Data.Entities
         // FK
 
         // N - 1
-        public virtual Facility Facility { get; set; }
+        public virtual Facility Facility { get; set; } = new Facility();
 
         // 1 - N
-        public virtual ICollection<Articles> Articles { get; set; }
+        public virtual ICollection<Articles> Articles { get; set; } = new List<Articles>();
 
-        public virtual ICollection<ApprovalHistory> ApprovalHistory { get; set; }
+        public virtual ICollection<ApprovalHistory> ApprovalHistory { get; set; } = new List<ApprovalHistory>();
 
-        public virtual ICollection<User_RegistrationPeriods> User_RegistrationPeriods { get; set;}
+        public virtual ICollection<User_RegistrationPeriods> User_RegistrationPeriods { get; set; } = new List<User_RegistrationPeriods>();
     }
 }

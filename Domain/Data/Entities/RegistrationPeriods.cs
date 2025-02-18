@@ -27,5 +27,13 @@ namespace AppDomain.Object
         public DateTime EndDate { get; set; }
 
         public bool Is_Opening_registration { get; set; }
+
+        //FK
+
+        // n - 1
+        public virtual Facility Facility { get; set; } = new Facility();
+
+        // 1 - n 
+        public virtual ICollection<WritingPhases> WritingPhases { get; set; } = new List<WritingPhases>();
     }
 }

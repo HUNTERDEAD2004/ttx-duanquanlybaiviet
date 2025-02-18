@@ -16,8 +16,8 @@ namespace AppDomain.Object
         //FK
 
         // 1 - n 
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<Users> Users { get; set; } = new List<Users>();
 
-        public virtual ICollection<RegistrationPeriods> Regions { get; set; }
+        public virtual ICollection<RegistrationPeriods> Regions { get; set; } = new List<RegistrationPeriods>();
     }
 }

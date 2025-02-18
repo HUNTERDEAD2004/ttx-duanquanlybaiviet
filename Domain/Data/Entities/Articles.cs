@@ -40,15 +40,13 @@ namespace AppDomain.Object
         //FK
 
         //  n - 1
-        public virtual Categories Categories { get; set; }
+        public virtual Categories Categories { get; set; } = new Categories();
 
-        public virtual Users Users { get; set; }
-
-        public virtual WritingPhases WritingPhases { get; set; }
+        public virtual WritingPhases WritingPhases { get; set; } = new WritingPhases();
 
         // 1 - n
-        public virtual Articles_Hashtag Articles_Hashtag { get; set; }
+        public virtual ICollection<Articles_Hashtag> Articles_Hashtags { get; set; } = new List<Articles_Hashtag>();
 
-        public virtual ApprovalHistory ApprovalHistory { get; set; }
+        public virtual ICollection<ApprovalHistory> Approvals { get; set; } = new List<ApprovalHistory>();
     }
 }
