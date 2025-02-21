@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDomain.Object
+namespace Services.DTO.RegistrationPeriods
 {
-    public class RegistrationPeriods
+    public class RegistrationPeriodsDTO
     {
         public int RegistrationPeriodID { get; set; }
 
         public string Name { get; set; }
 
-        public DateTime RegistrationStart {  get; set; }
+        public DateTime RegistrationStart { get; set; }
 
         public DateTime RegistrationEnd { get; set; }
 
@@ -27,13 +27,5 @@ namespace AppDomain.Object
         public DateTime EndDate { get; set; }
 
         public bool Is_Opening_registration { get; set; }
-
-        //FK
-
-        // n - 1
-        public virtual Facility Facility { get; set; } = new Facility();
-
-        // 1 - n 
-        public virtual ICollection<WritingPhases> WritingPhases { get; set; } = new List<WritingPhases>();
     }
 }

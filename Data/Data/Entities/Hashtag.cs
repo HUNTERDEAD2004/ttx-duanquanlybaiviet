@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AppDomain.Object
 {
-    public class Articles_Hashtag
+    public class Hashtag
     {
-        public int Id { get; set; }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int HashtagID { get; set; }
 
-        public int ArcticleID { get; set; }
+        public string Title { get; set; }
 
         public DateTime CreateDate { get; set; }
 
@@ -20,9 +20,7 @@ namespace AppDomain.Object
 
         //FK
 
-        // n - 1 
-        public virtual Articles Articles { get; set; } = new Articles();
-
-        public virtual Hashtag Hashtag { get; set; } = new Hashtag();
+        // 1 - n
+        public virtual ICollection<Articles_Hashtag> Articles_Hashtags { get; set; } = new List<Articles_Hashtag>();
     }
 }

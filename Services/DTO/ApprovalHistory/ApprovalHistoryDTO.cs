@@ -1,14 +1,13 @@
-﻿using Domain.Data.Entities;
-using Domain.Data.Enum;
+﻿using Domain.Data.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDomain.Object
+namespace Services.DTO.ApprovalHistory
 {
-    public class ApprovalHistory
+    public class ApprovalHistoryDTO
     {
         public int ApprovalID { get; set; }
 
@@ -27,14 +26,5 @@ namespace AppDomain.Object
         public DateTime ModifiledDate { get; set; }
 
         public HistoryApprovalStatus Status { get; set; }
-
-        //FK
-
-        // n - 1
-        public virtual Articles Articles { get; set; } = new Articles();
-
-        public virtual Users Users { get; set; } = new Users();
-
-        //
     }
 }

@@ -1,14 +1,13 @@
-﻿using AppDomain.Object;
-using Domain.Data.Enum;
+﻿using Domain.Data.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Data.Entities
+namespace Services.DTO.Users
 {
-    public class Users
+    public class UsersDTO
     {
         public int UserID { get; set; }
 
@@ -33,17 +32,5 @@ namespace Domain.Data.Entities
         public EntityStatus UStatus { get; set; }
 
         public int User_Training_Facility_Code { get; set; }
-
-        // FK
-
-        // N - 1
-        public virtual Facility Facility { get; set; } = new Facility();
-
-        // 1 - N
-        public virtual ICollection<Articles> Articles { get; set; } = new List<Articles>();
-
-        public virtual ICollection<ApprovalHistory> ApprovalHistory { get; set; } = new List<ApprovalHistory>();
-
-        public virtual ICollection<User_RegistrationPeriods> User_RegistrationPeriods { get; set; } = new List<User_RegistrationPeriods>();
     }
 }

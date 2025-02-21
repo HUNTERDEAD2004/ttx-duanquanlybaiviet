@@ -19,6 +19,15 @@ namespace View
                 app.UseHsts();
             }
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
+            });
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

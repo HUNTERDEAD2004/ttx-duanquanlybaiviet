@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDomain.Object
+namespace Services.DTO.Categories
 {
-    public class Categories
+    public class CategoriesDTO
     {
         public int CategoryID { get; set; }
 
@@ -18,12 +18,5 @@ namespace AppDomain.Object
         public decimal Royalty { get; set; }
 
         public EntityStatus Status { get; set; }
-
-        //FK
-
-        // 1 - n
-        public virtual ICollection<User_RegistrationPeriods> User_Registrations { get; set; } = new List<User_RegistrationPeriods>();
-
-        public virtual ICollection<Articles> Articles { get; set; } = new List<Articles>();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace AppDomain.Object
 {
     public class Articles
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ArcticleID { get; set; }
 
         public string Title { get; set; }
@@ -16,8 +18,6 @@ namespace AppDomain.Object
         public string Content { get; set; }
 
         public string EmailFe {  get; set; }
-
-        public string Avatar {  get; set; }
 
         public decimal Royalty { get; set; }
 

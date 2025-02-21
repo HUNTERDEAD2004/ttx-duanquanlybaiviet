@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDomain.Object
+namespace Services.DTO.Hashtag
 {
-    public class Hashtag
+    public class HashtagDTO
     {
         public int HashtagID { get; set; }
 
@@ -15,10 +15,5 @@ namespace AppDomain.Object
         public DateTime CreateDate { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
-        //FK
-
-        // 1 - n
-        public virtual ICollection<Articles_Hashtag> Articles_Hashtags { get; set; } = new List<Articles_Hashtag>();
     }
 }
