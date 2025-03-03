@@ -4,6 +4,9 @@ using Domain.Database.AppDbContext;
 using AppDomain.Object;
 using Microsoft.EntityFrameworkCore;
 using Azure.Core;
+using Common.Response;
+using Microsoft.AspNetCore.Http;
+using System.Threading;
 
 namespace Domain.Respository
 {
@@ -16,11 +19,16 @@ namespace Domain.Respository
             _appDbContext = quanLyBaiVietDbcontext;
         }
 
-        public async Task<bool> CreateArticles(CreateArticlesRequest request)
+        public async Task<ResponseDTO<ArticlesDTO>> CreateArticles(CreateArticlesRequest request)
         {
             if (request == null) 
-            { 
-                return false;
+            {
+                return new ResponseDTO<ArticlesDTO>
+                {
+                    DataResponse = null,
+                    Status = StatusCodes.Status400BadRequest,
+                    Message = "Chưa có request."
+                };
             }
             else
             {
@@ -43,13 +51,49 @@ namespace Domain.Respository
                 _appDbContext.Articles.Add(createArticles);
                 _appDbContext.SaveChanges();
 
-                return true;
+                return new ResponseDTO<ArticlesDTO>
+                {
+                    DataResponse = new ArticlesDTO
+                    {
+                        Title = request.Title,
+                        Content = request.Content,
+                        EmailFe = request.EmailFe,
+                        Royalty = request.Royalty,
+                        Download_path = request.Download_path,
+                        Description = request.Description,
+                        Preview_Image = request.Preview_Image,
+                        CreateDate = request.CreateDate,
+                        ModifiedDate = request.ModifiedDate,
+                        CategoryID = request.CategoryID,
+                        AuthorID = request.AuthorID,
+                        WritingPhaseID = request.WritingPhaseID
+                    },
+                    Status = StatusCodes.Status201Created,
+                    Message = "Tạo sản phẩm thành công."
+                };
             }
         }
 
-        public Task<bool> DeleteArticles(int id)
+        public async Task<ResponseDTO<bool>> DeleteArticles(int id)
         {
-            throw new NotImplementedException();
+            var deleteArticles = await _appDbContext.Articles.FindAsync(id);
+            if (deleteArticles != null)
+            {
+                _appDbContext.Articles.Remove(deleteArticles);
+                _appDbContext.SaveChanges();
+                return new ResponseDTO<bool>
+                {
+                    DataResponse = true,
+                    Status = StatusCodes.Status200OK,
+                    Message = "Xóa thành công."
+                };
+            }
+            return new ResponseDTO<bool>
+            {
+                DataResponse = false,
+                Status = StatusCodes.Status400BadRequest,
+                Message = "Xóa thất bại."
+            };
         }
 
         public async Task<List<ArticlesDTO>> GetAllArticles()
@@ -79,14 +123,102 @@ namespace Domain.Respository
             return Articles;
         }
 
-        public Task<ArticlesDTO> GetInfoArticlesById(int id)
+        public async Task<ArticlesDTO> GetInfoArticlesById(int id)
         {
-            throw new NotImplementedException();
+            var query = await _appDbContext.Articles
+                .Include(p => p.Articles_Hashtags)
+                .Include(p => p.Approvals)
+                .FirstOrDefaultAsync(a=>a.ArcticleID == id);
+            if (query == null)
+            {
+                return null;
+            }
+
+            return new ArticlesDTO
+            {
+                Title = query.Title,
+                Content = query.Content,
+                EmailFe = query.EmailFe,
+                Royalty = query.Royalty,
+                Download_path = query.Download_path,
+                Description = query.Description,
+                Preview_Image = query.Preview_Image,
+                CreateDate = query.CreateDate,
+                ModifiedDate = query.ModifiedDate,
+                CategoryID = query.CategoryID,
+                AuthorID = query.AuthorID,
+                WritingPhaseID = query.WritingPhaseID,
+            };
         }
 
-        public Task<bool> UpdateArticles(UpdateArticlesRequest request)
+        public async Task<ResponseDTO<ArticlesDTO>> UpdateArticles(UpdateArticlesRequest request)
         {
-            throw new NotImplementedException();
+            if (request == null)
+            {
+                return new ResponseDTO<ArticlesDTO>
+                {
+                    DataResponse = null,
+                    Status = StatusCodes.Status400BadRequest,
+                    Message = "Chưa có request."
+                };
+            }
+            else
+            {
+                var articles = await _appDbContext.Articles
+                    .Include(p => p.Articles_Hashtags)
+                    .Include(p => p.Approvals)
+                    .FirstOrDefaultAsync(p => p.ArcticleID == request.ArcticleID);
+
+                if (articles == null)
+                {
+                    return new ResponseDTO<ArticlesDTO>
+                    {
+                        DataResponse = null,
+                        Status = StatusCodes.Status404NotFound,
+                        Message = "Không tìm thấy bài viết."
+                    };
+                }
+
+                articles.Title = request.Title;
+                articles.Description = request.Description;
+                articles.Content = request.Content;
+                articles.EmailFe = request.EmailFe;
+                articles.Royalty = request.Royalty;
+                articles.Download_path = request.Download_path;
+                articles.Description = request.Description;
+                articles.Preview_Image = request.Preview_Image;
+                articles.CreateDate = request.CreateDate;
+                articles.ModifiedDate = request.ModifiedDate;
+                articles.CategoryID = request.CategoryID;
+                articles.AuthorID = request.AuthorID;
+                articles.WritingPhaseID = request.WritingPhaseID;
+
+                _appDbContext.Articles.Update(articles);
+
+                await _appDbContext.SaveChangesAsync();
+
+                return new ResponseDTO<ArticlesDTO>
+                {
+                    DataResponse = new ArticlesDTO
+                    {
+                        ArcticleID = request.ArcticleID,
+                        Title = request.Title,
+                        Content = request.Content,
+                        EmailFe = request.EmailFe,
+                        Royalty = request.Royalty,
+                        Download_path = request.Download_path,
+                        Description = request.Description,
+                        Preview_Image = request.Preview_Image,
+                        CreateDate = request.CreateDate,
+                        ModifiedDate = request.ModifiedDate,
+                        CategoryID = request.CategoryID,
+                        AuthorID = request.AuthorID,
+                        WritingPhaseID = request.WritingPhaseID
+                    },
+                    Status = StatusCodes.Status200OK,
+                    Message = "Cập nhật bài viết thành công."
+                };
+            }
         }
     }
 }
