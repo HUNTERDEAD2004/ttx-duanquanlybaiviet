@@ -45,7 +45,7 @@ namespace Domain.Database.AppDbContext
                 //optionsBuilder.UseSqlServer();
 
                 //Database Loc
-                //optionsBuilder.UseSqlServer();
+                optionsBuilder.UseSqlServer("Server=Localhost;Database=TTSQuanlybaiviet;Trusted_Connection=True;TrustServerCertificate=True");
             }
         }
 
