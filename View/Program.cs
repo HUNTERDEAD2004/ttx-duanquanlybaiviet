@@ -1,4 +1,4 @@
-﻿using Domain.Database.AppDbContext;
+using Domain.Database.AppDbContext;
 using Domain.Respository;
 using Microsoft.EntityFrameworkCore;
 using Services.IRespository;
@@ -16,12 +16,13 @@ namespace View
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<QuanLyBaiVietDbcontext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IWritingPhasesRespository, WritingPhasesRepo>();
+            builder.Services.AddScoped<IRegistrationPeriodsRespository, RegistrationPeriodsRepo>();
             builder.Services.AddScoped<IArticlesRespository, ArticlesRespository>();
             builder.Services.AddScoped<IArticles_HashtagRespository, Articles_HashtagRespository>();
             builder.Services.AddScoped<IFacilityRespository, FacilityRespository>();
             builder.Services.AddScoped<IHashtagRespository, HashtagRespository>();
             builder.Services.AddScoped<ICategoriesRespository, CategoriesRespository>();
-
 
             var app = builder.Build();
 

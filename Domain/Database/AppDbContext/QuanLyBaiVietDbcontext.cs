@@ -41,7 +41,7 @@ namespace Domain.Database.AppDbContext
                 //optionsBuilder.UseSqlServer();
 
                 //Database Loc
-                //optionsBuilder.UseSqlServer();
+                optionsBuilder.UseSqlServer("Server=DESKTOP-67I2820\\SQLEXPRESS01;Database=TTSQuanlybaiviet;Trusted_Connection=True;TrustServerCertificate=True");
             }
         }
 

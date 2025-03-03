@@ -1,4 +1,4 @@
-﻿using Common.Response;
+using Common.Response;
 using Services.DTO.Articles;
 using Services.DTO.Facility;
 using System;
@@ -12,7 +12,7 @@ namespace Services.IRespository
     public interface IFacilityRespository
     {
         Task<List<FacilityDTO>> GetAllFacilities();
-
+      
         Task<FacilityDTO> GetInfoFacilitiesById(int id);
 
         Task<ResponseDTO<FacilityDTO>> CreateFacilities(CreateFacilitiesRequest request);
