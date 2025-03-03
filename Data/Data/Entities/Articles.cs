@@ -11,7 +11,7 @@ namespace AppDomain.Object
     public class Articles
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ArcticleID { get; set; }
+        public int ArticleID { get; set; }
 
         public string Title { get; set; }
 

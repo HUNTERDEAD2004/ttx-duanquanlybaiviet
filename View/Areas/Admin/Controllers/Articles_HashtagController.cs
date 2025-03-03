@@ -17,53 +17,53 @@ namespace View.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var ArticlesList = _articles_HashtagRespository.GetAllArticles_Hashtag();
+            var ArticlesList = await _articles_HashtagRespository.GetAllArticles_Hashtag();
             return View(ArticlesList);
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var GetArticlesById = _articles_HashtagRespository.GetInfoArticles_HashtagById(id);
+            var GetArticlesById = await _articles_HashtagRespository.GetInfoArticles_HashtagById(id);
 
             return View(GetArticlesById);
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(CreateArticles_HashtagRespository request)
+        public async Task<ActionResult> Create(CreateArticles_HashtagRespository request)
         {
-            var articlesCreate = _articles_HashtagRespository.CreateArticles_Hashtag(request);
+            var articlesCreate = await _articles_HashtagRespository.CreateArticles_Hashtag(request);
 
             return RedirectToAction("Index", articlesCreate);
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var GetArticlesById = _articles_HashtagRespository.GetInfoArticles_HashtagById(id);
+            var GetArticlesById = await _articles_HashtagRespository.GetInfoArticles_HashtagById(id);
 
             return View(GetArticlesById);
         }
 
         [HttpPost]
-        public ActionResult Edit(UpdateArticles_HashtagRespository request)
+        public async Task<ActionResult> Edit(UpdateArticles_HashtagRespository request)
         {
-            var articlesUpdate = _articles_HashtagRespository.UpdateArticles_Hashtag(request);
+            var articlesUpdate = await _articles_HashtagRespository.UpdateArticles_Hashtag(request);
 
             return RedirectToAction("Index", articlesUpdate);
         }
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var articlesDelete = _articles_HashtagRespository.DeleteArticles_Hashtag(id);
+            var articlesDelete = await _articles_HashtagRespository.DeleteArticles_Hashtag(id);
 
             return RedirectToAction("Index", articlesDelete);
         }

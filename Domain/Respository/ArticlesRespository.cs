@@ -105,7 +105,7 @@ namespace Domain.Respository
 
             var Articles = await query.Select(p => new ArticlesDTO
             { 
-                ArcticleID = p.ArcticleID,
+                ArcticleID = p.ArticleID,
                 Title = p.Title,
                 Content = p.Content,
                 EmailFe = p.EmailFe,
@@ -128,7 +128,7 @@ namespace Domain.Respository
             var query = await _appDbContext.Articles
                 .Include(p => p.Articles_Hashtags)
                 .Include(p => p.Approvals)
-                .FirstOrDefaultAsync(a=>a.ArcticleID == id);
+                .FirstOrDefaultAsync(a=>a.ArticleID == id);
             if (query == null)
             {
                 return null;
@@ -167,7 +167,7 @@ namespace Domain.Respository
                 var articles = await _appDbContext.Articles
                     .Include(p => p.Articles_Hashtags)
                     .Include(p => p.Approvals)
-                    .FirstOrDefaultAsync(p => p.ArcticleID == request.ArcticleID);
+                    .FirstOrDefaultAsync(p => p.ArticleID == request.ArcticleID);
 
                 if (articles == null)
                 {

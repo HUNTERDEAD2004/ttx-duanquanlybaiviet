@@ -17,7 +17,7 @@ namespace View.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var ArticlesList = _hashtag.GetAllHashtag();
 
@@ -25,7 +25,7 @@ namespace View.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
             var GetArticlesById = _hashtag.GetInfoHashtagById(id);
 
@@ -33,13 +33,13 @@ namespace View.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(CreateHashtagRequest request)
+        public async Task<ActionResult> Create(CreateHashtagRequest request)
         {
             var articlesCreate = _hashtag.CreateHashtag(request);
 
@@ -47,24 +47,24 @@ namespace View.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var GetArticlesById = _hashtag.GetInfoHashtagById(id);
+            var GetArticlesById = await _hashtag.GetInfoHashtagById(id);
 
             return View(GetArticlesById);
         }
 
         [HttpPost]
-        public ActionResult Edit(UpdateHashtagRequest request)
+        public async Task<ActionResult> Edit(UpdateHashtagRequest request)
         {
-            var articlesUpdate = _hashtag.UpdateHashtag(request);
+            var articlesUpdate = await _hashtag.UpdateHashtag(request);
 
             return RedirectToAction("Index", articlesUpdate);
         }
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var articlesDelete = _hashtag.DeleteHashtag(id);
+            var articlesDelete = await _hashtag.DeleteHashtag(id);
 
             return RedirectToAction("Index", articlesDelete);
         }

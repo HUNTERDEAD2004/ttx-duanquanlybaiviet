@@ -17,54 +17,54 @@ namespace View.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var ArticlesList = _categoriesRespository.GetAllCategories();
+            var ArticlesList = await _categoriesRespository.GetAllCategories();
 
             return View(ArticlesList);
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var GetArticlesById = _categoriesRespository.GetInfoCategoriesById(id);
+            var GetArticlesById = await _categoriesRespository.GetInfoCategoriesById(id);
 
             return View(GetArticlesById);
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(CreateCategoriesRequest request)
+        public async Task<ActionResult> Create(CreateCategoriesRequest request)
         {
-            var articlesCreate = _categoriesRespository.CreateCategories(request);
+            var articlesCreate = await _categoriesRespository.CreateCategories(request);
 
             return RedirectToAction("Index", articlesCreate);
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var GetArticlesById = _categoriesRespository.GetInfoCategoriesById(id);
+            var GetArticlesById = await _categoriesRespository.GetInfoCategoriesById(id);
 
             return View(GetArticlesById);
         }
 
         [HttpPost]
-        public ActionResult Edit(UpdateCategoriesRequest request)
+        public async Task<ActionResult> Edit(UpdateCategoriesRequest request)
         {
-            var articlesUpdate = _categoriesRespository.UpdateCategories(request);
+            var articlesUpdate = await _categoriesRespository.UpdateCategories(request);
 
             return RedirectToAction("Index", articlesUpdate);
         }
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var articlesDelete = _categoriesRespository.DeleteCategories(id);
+            var articlesDelete = await _categoriesRespository.DeleteCategories(id);
 
             return RedirectToAction("Index", articlesDelete);
         }

@@ -17,54 +17,54 @@ namespace View.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var ArticlesList = _facilityRespository.GetAllFacilities();
+            var ArticlesList = await _facilityRespository.GetAllFacilities();
 
             return View(ArticlesList);
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var GetArticlesById = _facilityRespository.GetInfoFacilitiesById(id);
+            var GetArticlesById = await _facilityRespository.GetInfoFacilitiesById(id);
 
             return View(GetArticlesById);
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(CreateFacilitiesRequest request)
+        public async Task<ActionResult> Create(CreateFacilitiesRequest request)
         {
-            var articlesCreate = _facilityRespository.CreateFacilities(request);
+            var articlesCreate = await _facilityRespository.CreateFacilities(request);
 
             return RedirectToAction("Index", articlesCreate);
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var GetArticlesById = _facilityRespository.GetInfoFacilitiesById(id);
+            var GetArticlesById = await _facilityRespository.GetInfoFacilitiesById(id);
 
             return View(GetArticlesById);
         }
 
         [HttpPost]
-        public ActionResult Edit(UpdateFacilitiesRequest request)
+        public async Task<ActionResult> Edit(UpdateFacilitiesRequest request)
         {
-            var articlesUpdate = _facilityRespository.UpdateFacilities(request);
+            var articlesUpdate = await _facilityRespository.UpdateFacilities(request);
 
             return RedirectToAction("Index", articlesUpdate);
         }
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var articlesDelete = _facilityRespository.DeleteFacilities(id);
+            var articlesDelete = await _facilityRespository.DeleteFacilities(id);
 
             return RedirectToAction("Index", articlesDelete);
         }
