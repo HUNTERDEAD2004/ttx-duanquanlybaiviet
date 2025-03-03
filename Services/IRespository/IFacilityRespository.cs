@@ -1,4 +1,6 @@
-﻿using Services.DTO.Facility;
+using Common.Response;
+using Services.DTO.Articles;
+using Services.DTO.Facility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,13 @@ namespace Services.IRespository
     public interface IFacilityRespository
     {
         Task<List<FacilityDTO>> GetAllFacilities();
-        Task<FacilityDTO> GetFacilityById(int id);
-        Task<bool> CreateFacility(FacilityDTO facilityDTO);
-        Task<bool> UpdateFacility(FacilityDTO facilityDTO);
-        Task<bool> DeleteFacility(int id);
+      
+        Task<FacilityDTO> GetInfoFacilitiesById(int id);
+
+        Task<ResponseDTO<FacilityDTO>> CreateFacilities(CreateFacilitiesRequest request);
+
+        Task<ResponseDTO<FacilityDTO>> UpdateFacilities(UpdateFacilitiesRequest request);
+
+        Task<ResponseDTO<bool>> DeleteFacilities(int id);
     }
 }

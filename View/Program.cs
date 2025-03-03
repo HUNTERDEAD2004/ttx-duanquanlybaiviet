@@ -18,6 +18,11 @@ namespace View
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IWritingPhasesRespository, WritingPhasesRepo>();
             builder.Services.AddScoped<IRegistrationPeriodsRespository, RegistrationPeriodsRepo>();
+            builder.Services.AddScoped<IArticlesRespository, ArticlesRespository>();
+            builder.Services.AddScoped<IArticles_HashtagRespository, Articles_HashtagRespository>();
+            builder.Services.AddScoped<IFacilityRespository, FacilityRespository>();
+            builder.Services.AddScoped<IHashtagRespository, HashtagRespository>();
+            builder.Services.AddScoped<ICategoriesRespository, CategoriesRespository>();
 
             var app = builder.Build();
 
@@ -29,20 +34,16 @@ namespace View
                 app.UseHsts();
             }
 
-            
-
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
 
-                // Debug t?t c? c�c route ?� ??ng k�
+                // Debug tất cả các route đã đăng ký
                 endpoints.MapGet("/debug/routes", async context =>
                 {
                     var endpointDataSource = context.RequestServices.GetRequiredService<EndpointDataSource>();

@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
-
 namespace View.Controllers
 {
     public class HomeController : Controller
@@ -22,6 +20,5 @@ namespace View.Controllers
         {
             return View();
         }
-
     }
 }

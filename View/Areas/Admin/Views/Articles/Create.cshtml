@@ -1,0 +1,88 @@
+﻿@model Services.DTO.Articles.CreateArticlesRequest
+
+@{
+    ViewData["Title"] = "View1";
+}
+
+<h1>View1</h1>
+
+<h4>CreateArticlesRequest</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="View1">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailFe" class="control-label"></label>
+                <input asp-for="EmailFe" class="form-control" />
+                <span asp-validation-for="EmailFe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Royalty" class="control-label"></label>
+                <input asp-for="Royalty" class="form-control" />
+                <span asp-validation-for="Royalty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Download_path" class="control-label"></label>
+                <input asp-for="Download_path" class="form-control" />
+                <span asp-validation-for="Download_path" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Preview_Image" class="control-label"></label>
+                <input asp-for="Preview_Image" class="form-control" />
+                <span asp-validation-for="Preview_Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryID" class="control-label"></label>
+                <input asp-for="CategoryID" class="form-control" />
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorID" class="control-label"></label>
+                <input asp-for="AuthorID" class="form-control" />
+                <span asp-validation-for="AuthorID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WritingPhaseID" class="control-label"></label>
+                <input asp-for="WritingPhaseID" class="form-control" />
+                <span asp-validation-for="WritingPhaseID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
