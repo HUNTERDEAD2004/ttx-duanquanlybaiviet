@@ -12,11 +12,6 @@ namespace Domain.Database.AppDbContext
 {
     public class QuanLyBaiVietDbcontext : DbContext
     {
-        public QuanLyBaiVietDbcontext()
-        {
-            
-        }
-
         public QuanLyBaiVietDbcontext(DbContextOptions options) : base(options)
         {
         }
