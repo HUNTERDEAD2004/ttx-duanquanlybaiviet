@@ -1,4 +1,5 @@
-﻿using Services.DTO.Articles;
+﻿using Common.Response;
+using Services.DTO.Articles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Services.IRespository
 
         Task<ArticlesDTO> GetInfoArticlesById(int id);
 
-        Task<bool> CreateArticles(CreateArticlesRequest request);
+        Task<ResponseDTO<ArticlesDTO>> CreateArticles(CreateArticlesRequest request);
 
-        Task<bool> UpdateArticles(UpdateArticlesRequest request);
+        Task<ResponseDTO<ArticlesDTO>> UpdateArticles(UpdateArticlesRequest request);
 
-        Task<bool> DeleteArticles(int id);
+        Task<ResponseDTO<bool>> DeleteArticles(int id);
     }
 }

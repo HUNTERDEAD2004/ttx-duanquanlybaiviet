@@ -14,7 +14,7 @@ namespace Domain.AppDbContext.Configuration
         public void Configure(EntityTypeBuilder<Articles> builder)
         {
             builder.ToTable("Articles");
-            builder.HasKey(k => k.ArcticleID);
+            builder.HasKey(k => k.ArticleID);
             builder.HasOne(a => a.Categories)
                             .WithMany(p => p.Articles)
                             .HasForeignKey(a => a.CategoryID)
