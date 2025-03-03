@@ -65,7 +65,7 @@ namespace Domain.Respository
         {
             var query = _db.WritingPhases
                 .Include(x => x.Articles)
-                .Include(x => x.AmountArticles)
+                .Include(x => x.UserRegistrationPeriods)
                 .AsQueryable();
             var WritingPhase = await query.Select(x => new WritingPhasesDTO
             {
@@ -87,7 +87,7 @@ namespace Domain.Respository
         {
             var query = await _db.WritingPhases
                 .Include(x => x.Articles)
-                .Include (x => x.AmountArticles)
+                .Include (x => x.UserRegistrationPeriods)
                 .FirstOrDefaultAsync(x=> x.WritingPhaseID == id);
 
             if (query == null)
@@ -117,7 +117,7 @@ namespace Domain.Respository
             {
                 var writingphases = await _db.WritingPhases
                     .Include(x => x.Articles)
-                    .Include(x => x.AmountArticles)
+                    .Include(x => x.UserRegistrationPeriods)
                     .FirstOrDefaultAsync(x => x.WritingPhaseID==wpdto.WritingPhaseID);
                 if (writingphases == null)
                 {
